@@ -1,13 +1,7 @@
 <script setup lang="ts">
-
+import MovesList from './components/MovesList.vue';
 </script>
 
 <template>
-  <div>
-  </div>
-  
+  <MovesList />
 </template>
-
-<style scoped>
-
-</style>

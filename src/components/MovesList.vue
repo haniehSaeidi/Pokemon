@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { Pokemon, MoveType } from 'src/types/index';
 import Move from './Move.vue';
 import axios from 'axios';
+import Filter from './Filter.vue';
 
 const moves = ref<Pokemon[]>([]);
 const moveDetails = ref<MoveType[]>([]);
+const currentFilter = ref<string>('all');
 
 const fetchMoveDetails = async (moveUrl: string) => {
   try {
@@ -32,14 +34,26 @@ const fetchMoves = async () => {
   }
 };
 
+const filteredMoveDetails = computed(() => {
+  if (currentFilter.value === 'all') {
+    return moveDetails.value;
+  }
+  return moveDetails.value.filter(detail => detail.damageClass === currentFilter.value);
+});
+
+const updateFilter = (newVal: string) => {
+  currentFilter.value = newVal;
+};
+
 onMounted(fetchMoves);
 
 </script>
 
 <template>
-  <div class="cardContainer">
+  <div class="card-container">
+    <Filter @updateFilter="updateFilter" />
     <div class="movesContainer">
-      <div v-for="(detail, index) in moveDetails" :key="index">
+      <div v-for="(detail, index) in filteredMoveDetails" :key="index">
         <Move :pokemon="detail" />
       </div>
     </div>

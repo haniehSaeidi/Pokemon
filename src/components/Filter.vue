@@ -45,6 +45,7 @@ const updateFilter = (filter: string) => {
   border-radius: 8px;
   padding: 10px;
   background-color: #fff;
+  margin-top: 30px;
 }
 
 label {

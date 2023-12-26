@@ -6,15 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
     "axios": "^1.6.2",
     "vue": "^3.3.11"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
     "@vue/test-utils": "^2.4.3",
+    "jsdom": "^23.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vitest": "^1.1.0",
